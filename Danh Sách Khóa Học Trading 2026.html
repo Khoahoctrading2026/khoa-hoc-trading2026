@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danh Sách Khóa Học Trading 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Be Vietnam Pro',Arial,sans-serif;background:#080c14;color:#e0e0e0;min-height:100vh}
+  .hero{background:linear-gradient(135deg,#0d1b2a 0%,#1a1040 50%,#0d2a1b 100%);padding:36px 20px 28px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid #1e2d40}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,180,0,.07) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(0,200,120,.07) 0%,transparent 60%)}
+  .hero-badge{display:inline-block;background:rgba(255,180,0,.15);border:1px solid rgba(255,180,0,.4);color:#f0c040;font-size:11px;font-weight:600;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:12px}
+  .hero h1{font-size:clamp(20px,5vw,32px);font-weight:700;color:#fff;line-height:1.3;position:relative}
+  .hero h1 span{color:#f0c040}
+  .hero-sub{color:#8899aa;font-size:13px;margin-top:8px;position:relative}
+  .stats{display:flex;gap:24px;justify-content:center;margin-top:18px;position:relative;flex-wrap:wrap}
+  .stat-num{font-size:22px;font-weight:700;color:#f0c040}
+  .stat-label{font-size:11px;color:#667;text-align:center}
+  .order-note{background:rgba(255,180,0,.07);border:1px solid rgba(255,180,0,.2);border-radius:10px;padding:12px 16px;margin:12px auto;max-width:800px;font-size:12px;color:#a89060;text-align:center}
+  .search-wrap{padding:12px 16px 8px;max-width:800px;margin:0 auto}
+  .search-box{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #1e2d40;background:#0d1520;color:#fff;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+  .search-box:focus{border-color:#f0c040}
+  .container{max-width:960px;margin:0 auto;padding:8px 12px 40px}
+  .section{margin-bottom:10px;border-radius:12px;overflow:hidden;border:1px solid #1a2535;background:#0b1220}
+  .section-title{padding:13px 16px;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s;user-select:none}
+  .section-title:hover{background:rgba(255,255,255,.03)}
+  .s-left{display:flex;align-items:center;gap:10px}
+  .section-icon{font-size:18px}
+  .part-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.5px}
+  .s-name{color:#e8e0ff}
+  .s-right{display:flex;align-items:center;gap:8px}
+  .s-count{background:rgba(255,180,0,.12);color:#f0c040;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+  .chevron{color:#445;font-size:12px;transition:transform .2s}
+  .title-open .chevron{transform:rotate(180deg)}
+  .section-body{display:none}
+  .section-body.open{display:block}
+  .course-item{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:10px 16px;border-top:1px solid #111a25;transition:background .15s}
+  .course-item:hover{background:rgba(255,255,255,.025)}
+  .c-num{color:#334;font-size:12px;padding-top:2px;font-weight:600}
+  .c-info{min-width:0}
+  .c-name{font-size:14px;font-weight:600;color:#d0d8ff;line-height:1.3}
+  .c-desc{font-size:11px;color:#5a7090;margin-top:3px;line-height:1.4;font-style:italic}
+  .c-links{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;align-items:flex-start;padding-top:2px}
+  .link-btn{color:#fff;border:none;border-radius:6px;padding:4px 11px;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;transition:opacity .15s;font-family:inherit}
+  .link-btn:hover{opacity:.8}
+  .lk-blue{background:linear-gradient(135deg,#1a6eff,#0050cc)}
+  .lk-green{background:linear-gradient(135deg,#18a060,#0f7040)}
+  .lk-purple{background:linear-gradient(135deg,#8840dd,#6020aa)}
+  .lk-orange{background:linear-gradient(135deg,#dd6020,#aa4010)}
+  .hidden{display:none!important}
+
+  /* Unique color per section */
+  .sec-0 .section-title{background:linear-gradient(90deg,rgba(255,200,50,.18),transparent)}
+  .sec-0 .part-badge{background:rgba(255,200,50,.2);color:#f0c040}
+  .sec-1 .section-title{background:linear-gradient(90deg,rgba(0,200,120,.15),transparent)}
+  .sec-1 .part-badge{background:rgba(0,200,120,.2);color:#00c878}
+  .sec-2 .section-title{background:linear-gradient(90deg,rgba(80,140,255,.15),transparent)}
+  .sec-2 .part-badge{background:rgba(80,140,255,.2);color:#80b0ff}
+  .sec-3 .section-title{background:linear-gradient(90deg,rgba(200,80,255,.15),transparent)}
+  .sec-3 .part-badge{background:rgba(200,80,255,.2);color:#e080ff}
+  .sec-4 .section-title{background:linear-gradient(90deg,rgba(255,120,40,.15),transparent)}
+  .sec-4 .part-badge{background:rgba(255,120,40,.2);color:#ff9060}
+  .sec-5 .section-title{background:linear-gradient(90deg,rgba(0,200,220,.15),transparent)}
+  .sec-5 .part-badge{background:rgba(0,200,220,.2);color:#00c8dc}
+  .sec-6 .section-title{background:linear-gradient(90deg,rgba(160,200,0,.15),transparent)}
+  .sec-6 .part-badge{background:rgba(160,200,0,.2);color:#a0c800}
+  .sec-7 .section-title{background:linear-gradient(90deg,rgba(255,80,80,.15),transparent)}
+  .sec-7 .part-badge{background:rgba(255,80,80,.2);color:#ff8080}
+  .sec-8 .section-title{background:linear-gradient(90deg,rgba(80,160,255,.15),transparent)}
+  .sec-8 .part-badge{background:rgba(80,160,255,.2);color:#50a0ff}
+  .sec-9 .section-title{background:linear-gradient(90deg,rgba(255,200,0,.15),transparent)}
+  .sec-9 .part-badge{background:rgba(255,200,0,.2);color:#ffc800}
+  .sec-10 .section-title{background:linear-gradient(90deg,rgba(100,220,100,.15),transparent)}
+  .sec-10 .part-badge{background:rgba(100,220,100,.2);color:#64dc64}
+  .sec-11 .section-title{background:linear-gradient(90deg,rgba(180,180,200,.1),transparent)}
+  .sec-11 .part-badge{background:rgba(180,180,200,.15);color:#aaaacc}
+
+  @media(max-width:520px){
+    .course-item{grid-template-columns:24px 1fr}
+    .c-links{grid-column:2;justify-content:flex-start;margin-top:6px}
+  }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-badge">✦ TỪ ĐỈNH CAO → NỀN TẢNG → CHUYÊN BIỆT ✦</div>
+  <h1>📚 Danh Sách Khóa Học <span>Trading 2026</span></h1>
+  <p class="hero-sub">Tổng hợp Forex · Chứng Khoán · Crypto – Sắp xếp từ quan trọng nhất đến chuyên biệt</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">160+</div><div class="stat-label">Khóa Học</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">Phần</div></div>
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Cập Nhật</div></div>
+  </div>
+</div>
+
+<div class="order-note">
+  📌 Thứ tự sắp xếp: <strong>Nền tảng cốt lõi → Đọc thị trường nâng cao → Phương pháp chuyên biệt → Công cụ hỗ trợ → Thị trường cụ thể</strong>
+</div>
+
+<div class="search-wrap">
+  <input class="search-box" type="text" id="search" placeholder="🔍  Tìm kiếm khóa học..." oninput="filterCourses()">
+</div>
+<div class="container" id="list"></div>
+
+<script>
+const data = [
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 1 – NỀN TẢNG CỐT LÕI & PRICE ACTION
+  // Lý do đứng đầu: PA là ngôn ngữ gốc của thị trường, ai cũng phải học trước
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"📐", part:"PHẦN 1", title:"Nền Tảng Cốt Lõi & Price Action",
+    reason:"🏆 Học trước tiên – PA là ngôn ngữ gốc của mọi thị trường tài chính",
+    courses:[
+      {name:"Lý Thuyết Dow – Nền Tảng Phân Tích Kỹ Thuật Kinh Điển",desc:"Gốc rễ phân tích kỹ thuật – nền tảng bắt buộc trước khi học bất kỳ phương pháp nào khác",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Al Brooks – Price Action Trading Mastery",desc:"Kinh điển PA bậc nhất thế giới – đọc nến & hành động giá chuyên sâu, không cần chỉ báo nào",links:[["Khóa","https://www.threads.com/@lebinhtrung3012"],["Sách","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Medio – Minimalist Price Action System",desc:"PA tối giản – ít setup, chất lượng cao, bảo toàn vốn là ưu tiên số một mỗi giao dịch",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nukida – Structural Price Action Trading",desc:"Kết hợp PA với vùng kháng cự hỗ trợ động theo cấu trúc giá thực tế thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nhật Hoài – Thực Chiến Price Action Việt Nam",desc:"Price action thực chiến – phân tích đơn giản, ra quyết định nhanh và hiệu quả mỗi phiên",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Blockchain Dream – Pure Price Action Method",desc:"PA thuần túy kết hợp tư duy thị trường – đọc nến không cần bất kỳ chỉ báo phụ nào",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"S18 Trading – Lộ Trình Price Action 3 Cấp Độ",desc:"Lộ trình 3 cấp độ bài bản – từ nhập môn PA đến chiến lược nâng cao có hệ thống hoàn chỉnh",links:[["S18","https://www.threads.com/@lebinhtrung3012"],["LV2","https://www.threads.com/@lebinhtrung3012"],["LV3","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Zanshin – Mindful Trading & Tâm Thế Giao Dịch",desc:"PA thiền định – tâm thế tỉnh thức, giao dịch không cảm xúc theo hành động giá thuần túy",links:[["Zanshin 1","https://www.threads.com/@lebinhtrung3012"],["Zanshin 2","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Malaysian SNR – Support & Resistance Mastery by PiT Chou",desc:"Trường phái SnR Malaysia – clean, rõ ràng, tỷ lệ RR ấn tượng theo tiêu chuẩn quốc tế",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Malek – Advanced SnR Mentoring 1-1",desc:"Kèm 1-1 cùng Malek – chuẩn hóa kỹ năng vẽ vùng SnR & tối ưu điểm entry theo PA",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Alchemist – The Malaysia SnR Trading Formula",desc:"Thuật giả kim thị trường – biến SnR đơn giản thành hệ thống giao dịch sinh lời bền vững",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Văn Thanh – Price Action Thực Chiến Chuyên Sâu",desc:"PA thực chiến Văn Thanh – phân tích nến & cấu trúc giá theo kinh nghiệm tích lũy nhiều năm",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nora Bystra – Clean Price Action Framework",desc:"Chiến lược PA của Nora – đọc hành động giá theo dòng chảy thị trường, không chỉ báo phụ",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nordic Hunter – Precision Sniper Price Action",desc:"Săn lệnh kiểu Bắc Âu – PA kết hợp quản lý rủi ro khắt khe, chờ setup xác suất cao nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kemtrading – Crowd Psychology & Price Action",desc:"PA kết hợp tâm lý đám đông – dự báo bước giá tiếp theo từ hành vi của thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kiếp Trader – Hành Trình Thức Tỉnh Của Trader",desc:"Hành trình thức tỉnh – PA chân thực từ những bài học thực tế đắt giá nhất của người trong nghề",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"TP Trading – Trend & Pullback Price Action",desc:"PA thực chiến TP – phân tích xu hướng & pullback để bắt sóng hiệu quả nhất mỗi phiên",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"PP 3 Hộp – Phương Pháp Phân Vùng Giá Độc Đáo",desc:"Phương pháp 3 hộp độc đáo – phân chia thị trường theo vùng giá để giao dịch không bị nhiễu loạn",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Hệ Thống 411 – Công Thức Giao Dịch 4-1-1",desc:"Công thức 4-1-1 – 4 bước phân tích, 1 xác nhận, 1 lệnh chuẩn xác không dư thừa",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trader XO – Price Action & Market Psychology",desc:"PA phong cách XO – kết hợp hành động giá với tâm lý thị trường để tìm điểm entry tối ưu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SNR Trendline – Bộ Đôi Phân Tích Kỹ Thuật Kinh Điển",desc:"Bộ đôi kinh điển – công cụ đơn giản nhất nhưng hiệu quả bậc nhất khi sử dụng đúng cách",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 2 – WYCKOFF & VSA
+  // Lý do đứng thứ 2: Hiểu dòng tiền & volume – nền tảng của mọi Smart Money
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🌊", part:"PHẦN 2", title:"Wyckoff & VSA (Volume Spread Analysis)",
+    reason:"💎 Hiểu dòng tiền thực sự – nền tảng của mọi trường phái Smart Money",
+    courses:[
+      {name:"Wyckoff 8x – Accumulation & Distribution Mastery",desc:"Wyckoff thực chiến – nhận diện pha tích lũy & phân phối để entry theo đúng dòng tiền thông minh",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"AK-VSA – Volume Spread Analysis Chuyên Sâu",desc:"Hệ thống AK-VSA – đọc volume và nến theo trường phái VSA chuyên sâu cho forex & hàng hóa",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Thanh Nin – VSA & Wyckoff Kết Hợp Toàn Diện",desc:"Song kiếm hợp bích VSA & Wyckoff – đọc dòng tiền tổ chức toàn diện theo trường phái Thanh Nin",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Tâm Hợp Phát – VSA Thuần Việt Thực Chiến",desc:"VSA thuần Việt Tâm Hợp Phát – đọc tín hiệu volume sâu sắc, dễ áp dụng thực tế thị trường VN",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Wyckoff Smart – Modern Accumulation Trading 2025",desc:"Wyckoff hiện đại 2025 – áp dụng lý thuyết tích lũy/phân phối kinh điển vào thị trường ngày nay",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Mr Trung – Wyckoff kết hợp Footprint & TPO",desc:"Wyckoff bài bản Mr Trung – phân tích cấu trúc thị trường kết hợp Footprint & TPO chuyên sâu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Ben Trading – Volume Spread Analysis Thực Chiến",desc:"VSA thực chiến Ben – theo dõi dấu hiệu tổ chức qua phân tích nến & khối lượng giao dịch",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vnrebates VSA – Phân Tích Khối Lượng Chuẩn Xác",desc:"VSA chuẩn Vnrebates – kết hợp volume spread analysis với các công cụ xác nhận xu hướng",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Ratio Trading – Tương Quan Cặp Tiền & Correlation",desc:"Phân tích tỷ lệ tương quan – chiến lược dựa trên mối liên hệ giữa các cặp tiền tệ thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 3 – ICT (Inner Circle Trader) – GỐC NGUỒN
+  // Lý do đứng trước SMC: ICT là trường phái GỐC, SMC phái sinh từ ICT
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"⚡", part:"PHẦN 3", title:"ICT – Inner Circle Trader (Trường Phái Gốc)",
+    reason:"👑 Trường phái GỐC do Michael Huddleston sáng lập – SMC học từ ICT ra, phải học ICT trước",
+    courses:[
+      {name:"ICT Mentorship – Michael Huddleston Full Course 2022",desc:"Thánh kinh ICT của Michael Huddleston – bộ tài liệu mentorship đầy đủ nhất, nền tảng của mọi trader SMC",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"ICT Infinity – Inner Circle Trader Toàn Diện",desc:"ICT không giới hạn – hành trình khám phá hệ thống Inner Circle Trader từ cơ bản đến chuyên sâu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"ICT Việt Hóa – Inner Circle Trader Hệ Thống Hóa",desc:"ICT Việt hóa bài bản – hệ thống hóa tài liệu Inner Circle Trader dễ học và áp dụng ngay",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Dong – ICT PD Array, OTE & Kill Zone Thực Chiến",desc:"ICT thực chiến Dong – ứng dụng PD Array, OTE và Kill Zone vào giao dịch hàng ngày hiệu quả",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"ICT Snipers – Precision Entry Inner Circle Trader",desc:"Xạ thủ ICT – entry chính xác như tay bắn tỉa bằng các mô hình ICT tinh tế và hiệu quả nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Banktraps ICT – Nhận Diện Bẫy Ngân Hàng 2025",desc:"Bẫy ngân hàng – nhận diện & giao dịch theo cái bẫy mà tổ chức cài đặt cho retail trader",links:[["Banktraps","https://www.threads.com/@lebinhtrung3012"],["2025","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Beyonder – ICT Advanced Smart Money Deep Dive",desc:"Vượt ra ngoài giới hạn ICT thông thường – khám phá tầng sâu hơn của Smart Money Concept",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Faiz – SMC & ICT Kết Hợp Song Trường Phái",desc:"Kết hợp SMC và ICT theo Faiz – hệ thống song trường phái dành cho trader muốn nâng cấp toàn diện",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Flipping Markets – Counter-Trend Institutional Trading",desc:"Lật ngược thị trường – giao dịch ngược chiều tổ chức tại các điểm đảo chiều xác suất cao",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 4 – SMC (Smart Money Concepts) – PHÁI SINH TỪ ICT
+  // Lý do sau ICT: SMC là cộng đồng phát triển dựa trên ICT, phổ biến hơn nhưng ít hàn lâm hơn
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🧠", part:"PHẦN 4", title:"SMC – Smart Money Concepts (Phái Sinh Từ ICT)",
+    reason:"🔥 Phát triển từ ICT – phổ biến nhất hiện nay, đa dạng trường phái và cộng đồng lớn",
+    courses:[
+      {name:"Trading Hub – SMC Toàn Diện 3.0 / 2025 / 2026",desc:"Hệ thống SMC toàn diện nhất – truy vết dấu chân tổ chức chuẩn xác theo từng phiên giao dịch",links:[["Hub 3.0","https://www.threads.com/@lebinhtrung3012"],["2025","https://www.threads.com/@lebinhtrung3012"],["2026","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trading Hub 4.0 – CRT & Advanced Liquidity SMC",desc:"Phiên bản nâng cấp Trading Hub – tích hợp thêm chiến lược CRT & Liquidity nâng cao nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Phantom Trading – Hidden Liquidity & Market Structure",desc:"Giao dịch theo bóng tối – phát hiện thanh khoản ẩn & cấu trúc thị trường với độ chuẩn xác cao",links:[["2024","https://www.threads.com/@lebinhtrung3012"],["Update","https://www.threads.com/@lebinhtrung3012"],["2022","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Photon Trading – BOS & FVG Entry Mastery / Vertex",desc:"Chiến lược entry tốc độ ánh sáng – kết hợp BOS & FVG để tối ưu hóa điểm vào lệnh",links:[["Photon","https://www.threads.com/@lebinhtrung3012"],["Vertex","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"LC Photon 2024 – Multi-Timeframe SMC Refinement",desc:"Phiên bản nâng cấp Photon – lọc setup chất lượng cao từ đa khung thời gian chính xác hơn",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"MMT-ARJO-FVG – Bộ Ba Công Cụ SMC Chuyên Sâu",desc:"Bộ ba lợi hại MMT + ARJO + FVG – mổ xẻ cấu trúc thị trường đến từng chi tiết nhỏ nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"CRT Romeo – Candle Range Theory Chuyên Sâu",desc:"Candle Range Theory theo Romeo – phân tích nến chuyên sâu để bắt đỉnh đáy thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"M1TF – Multi-Timeframe SMC Entry Framework",desc:"Giao dịch đa khung thời gian M1 – xác định xu hướng lớn để entry chính xác ở khung nhỏ",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SPA – Simple Price Action SMC System",desc:"Phân tích giá đơn giản – tối giản công cụ, tối đa hiệu quả trong từng giao dịch thực tế",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"LAB Trading – Kiểm Chứng Chiến Lược SMC Thực Tế",desc:"Phòng thí nghiệm chiến lược SMC – kiểm chứng hệ thống bằng dữ liệu thực tế thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Faiz SMC – Smart Money Concepts Chuẩn Quốc Tế",desc:"SMC chuẩn quốc tế theo Faiz – đơn giản, có hệ thống, khả năng nhân rộng và áp dụng cao",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Dominik – SMC Kết Hợp Quản Lý Rủi Ro Chặt Chẽ",desc:"Hệ thống Dominik – kết hợp SMC với quản lý rủi ro chặt chẽ theo từng phiên giao dịch",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Henry SMC – Smart Money Concepts Từ A đến Z",desc:"Hệ thống SMC từ A-Z của Henry – nền tảng vững chắc cho trader mới bắt đầu con đường SMC",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Phoenix Trader – SMC Tái Sinh Phong Cách Giao Dịch",desc:"Vươn lên từ tro tàn – hệ thống SMC dành cho trader muốn tái sinh phong cách giao dịch",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SND – Smart Money Concepts Quốc Tế Việt Hóa",desc:"Tài liệu SMC quốc tế Việt hóa – chuẩn hóa kiến thức Smart Money theo góc nhìn toàn cầu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SMC Infinity – Hành Trình Smart Money Không Giới Hạn",desc:"Hành trình SMC không giới hạn – từ nền tảng đến chiến lược nâng cao cấp độ pro trader",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SDL – SMC Luyện Ngục & Absolute Trading System",desc:"Lộ trình luyện SMC từ cơ bản đến luyện ngục – rèn tư duy phân tích thị trường đỉnh cao",links:[["SDL","https://www.threads.com/@lebinhtrung3012"],["Update","https://www.threads.com/@lebinhtrung3012"],["Luyện Ngục","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SDZ Max – SMC Kết Hợp Supply Demand Tối Đa",desc:"Kết hợp SMC & Supply-Demand tối đa – tìm điểm đảo chiều xác suất cao nhất thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SDZ Area – Vùng Giao Thoa SMC & Cung Cầu",desc:"Vùng giao thoa SMC & SDZ – nhận diện cung cầu ẩn theo góc nhìn tổ chức chuyên sâu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Darkwolf – SMC Săn Thanh Khoản & Order Block",desc:"Săn thanh khoản chuyên sâu – entry theo vùng imbalance & Order Block chuẩn xác theo SMC",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SMC Coffee – Smart Money Dễ Tiếp Cận Phần 1 & 2",desc:"Học SMC nhẹ nhàng như cốc cà phê sáng – dễ tiếp cận, thực tế và hiệu quả bền vững",links:[["Coffee","https://www.threads.com/@lebinhtrung3012"],["Coffee 2","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Paul SMC – Smart Money Theo Dòng Chảy Tự Nhiên",desc:"Triết lý SMC của Paul – phân tích cấu trúc thị trường theo dòng chảy tự nhiên của giá",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Mackie – SMC Tinh Giản Giao Dịch Chất Lượng Cao",desc:"SMC phong cách Mackie – tinh giản setup, tập trung vào những giao dịch có giá trị cao nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Phố Trading – SMC Thuần Việt Thực Chiến Hàng Ngày",desc:"SMC thuần Việt – đơn giản hóa Smart Money cho trader Việt Nam thực chiến hàng ngày",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trade Đi Sợ Chi – SMC Vượt Tâm Lý & Nỗi Sợ",desc:"Tâm lý SMC – vượt qua nỗi sợ, entry tự tin với xác suất nghiêng về phía mình",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Tôi Đi Trade Dạo – SMC Phong Cách Tự Do Linh Hoạt",desc:"SMC phong cách tự do – linh hoạt, thực chiến, không rập khuôn theo bất kỳ khuôn mẫu nào",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"M Trading – SMC Theo Cấu Trúc & Dòng Tiền Lớn",desc:"SMC thực chiến – giao dịch theo cấu trúc thị trường và dòng tiền lớn theo phong cách M Trading",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vnrebates SMC – Smart Money Concepts Tinh Gọn",desc:"SMC tinh gọn – truy vết dòng tiền thông minh, phù hợp cho trader mới tiếp cận Smart Money",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 5 – SUPPLY & DEMAND
+  // Lý do sau SMC: SDZ là một nhánh độc lập song song với SMC
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🎯", part:"PHẦN 5", title:"Supply & Demand (SDZ – Vùng Cung Cầu)",
+    reason:"🏹 Trường phái độc lập song song SMC – giao dịch theo vùng cung cầu thuần túy",
+    courses:[
+      {name:"Sam Seiden – Supply & Demand Gốc Nguồn Kinh Điển",desc:"Gốc rễ phương pháp SDZ từ Sam Seiden – người khai sinh trường phái cung cầu thực thụ thế giới",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Phong Nguyễn – Cung Cầu Thuần Việt Thực Chiến",desc:"SDZ thuần Việt – Việt hóa phương pháp cung cầu, dễ hiểu và sát thực tế thị trường Việt Nam",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vô Thường – Supply Demand Linh Hoạt & Thực Tế",desc:"SDZ triết lý Vô Thường – chấp nhận biến đổi, giao dịch linh hoạt theo thực tế từng phiên",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SDZ Set & Forget – Đặt Lệnh Tự Động Không Cần Theo Dõi",desc:"Đặt lệnh rồi quên – chiến lược SDZ tự động, không cần ngồi màn hình theo dõi cả ngày",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Quyết Anh SDZ – Chuỗi Khóa Cung Cầu K3 / K4 / K6",desc:"Chuỗi khóa SDZ Quyết Anh – mỗi khóa một nâng cấp, cập nhật liên tục theo thực tế thị trường",links:[["K3","https://www.threads.com/@lebinhtrung3012"],["K4","https://www.threads.com/@lebinhtrung3012"],["K6","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vnrebates SDZ – Supply Demand Hệ Thống Bài Bản",desc:"Supply-Demand chuẩn Vnrebates – hướng dẫn bài bản từ nền tảng đến giao dịch thực tế hiệu quả",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SMO – Smart Market Order & Supply Demand Concept",desc:"Khái niệm SMO – tổng hợp Supply-Demand & Market Order để giao dịch theo dòng lệnh tổ chức",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Lulu Concept – SDZ Quốc Tế Việt Hóa Hoàn Toàn",desc:"Lulu Concept Việt hóa – hệ thống SDZ quốc tế được giải thích rõ ràng dành cho trader Việt Nam",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"PNF – Point & Figure Kết Hợp Cung Cầu",desc:"Point & Figure kết hợp cung cầu – loại bỏ noise thị trường và tập trung vào xu hướng thực",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"DTFX M1 – Supply Demand Scalping Khung Phút",desc:"DTFX M1 – giao dịch khung M1 với vùng cung cầu cực kỳ chính xác, dành cho scalper SDZ",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 6 – ORDER FLOW, BOOKMAP, FOOTPRINT, VOLUME PROFILE, TPO
+  // Lý do sau các trường phái: Đây là công cụ nâng cao, cần nền tảng vững mới dùng được
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🔬", part:"PHẦN 6", title:"Order Flow, Bookmap, Footprint & Volume Profile",
+    reason:"🔭 Công cụ nâng cao – nhìn thấy dòng tiền thực tế, cần nền tảng vững mới học được",
+    courses:[
+      {name:"4FX Auction Theory – Giao Dịch Theo Lý Thuyết Đấu Giá",desc:"Auction Theory 4FX – hiểu cơ chế đấu giá thị trường, giao dịch theo vùng chấp nhận giá thực",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Order Flow Pro – Giao Dịch Theo Dòng Lệnh Thực Tế",desc:"Order flow chuyên sâu – theo dõi từng dòng lệnh thực để hiểu ý đồ thực sự của thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"OSD – Bookmap & Order Flow Hệ Sinh Thái Toàn Diện",desc:"Hệ sinh thái OSD – từ giao dịch cơ bản đến Bookmap chuyên sâu theo dõi lệnh khối lớn",links:[["OSD K9","https://www.threads.com/@lebinhtrung3012"],["vs Học Viên","https://www.threads.com/@lebinhtrung3012"],["Bookmap","https://www.threads.com/@lebinhtrung3012"],["BM 5K","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Bookmap 369 – Theo Dõi Order Book & Lệnh Khối Lớn",desc:"Bookmap hệ thống 369 – theo dõi order book trực tiếp, nhìn thấy nơi tổ chức đặt lệnh khủng",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Mr Trung – Footprint Chart Phân Tích Chuyên Sâu",desc:"Footprint chuyên sâu Mr Trung – đọc từng giao dịch theo từng mức giá, thấu hiểu cấu trúc lệnh",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"8x Trading – Footprint Delta & Volume Analysis",desc:"Footprint 8x – phân tích khối lượng theo từng tick để xác định vùng đảo chiều cực kỳ chính xác",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Henry – Footprint Chart & Imbalance Trading",desc:"Footprint Henry – đọc delta & imbalance trong từng nến để dự báo hướng đi tiếp theo của giá",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Mr Trung – Market Profile TPO Chuyên Sâu",desc:"Market Profile TPO – phân tích phân phối thời gian theo giá, tìm vùng giá trị thực thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Thiện – TPO Market Profile Acceptance & Rejection",desc:"TPO chuyên sâu của Thiện – làm chủ Market Profile để giao dịch theo vùng acceptance & rejection",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Caro Nguyễn – Volume Profile POC & Value Area",desc:"Volume Profile Caro Nguyễn – xây dựng chiến lược quanh POC, VAH, VAL với độ chính xác cao",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Ben – Heatmap Order Concentration Analysis",desc:"Heatmap Ben – đọc nhiệt độ thị trường qua mức độ tập trung lệnh theo từng vùng giá",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"DMC Trading – Heatmap Dòng Lệnh Trực Quan",desc:"Heatmap DMC – phân tích trực quan dòng lệnh theo màu sắc, dễ nhận diện áp lực mua/bán",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"FX Dream – Order Flow & Kỹ Thuật Đa Chiều 2025",desc:"FXDream 2025 – orderflow kết hợp phân tích kỹ thuật đa chiều cho forex thực chiến",links:[["FXDream","https://www.threads.com/@lebinhtrung3012"],["2025","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SMO 2025 – Smart Market Order System Cập Nhật",desc:"SMO phiên bản 2025 – hệ thống Smart Market Order cập nhật theo biến động thị trường mới nhất",links:[["SMO","https://www.threads.com/@lebinhtrung3012"],["SMO-2","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Henry – VSA Volume Spread Analysis Chuyên Nghiệp",desc:"VSA theo Henry – phân tích volume spread chuyên nghiệp kết hợp hành động giá thực tế",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vnrebates – VSA Nhận Diện Dòng Tiền Tổ Chức",desc:"VSA chuẩn Vnrebates – nhận diện tín hiệu dòng tiền lớn qua volume và spread của từng phiên",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 7 – CHỈ BÁO & HỆ THỐNG ĐẶC BIỆT
+  // Lý do sau: Chỉ báo là công cụ hỗ trợ, không phải nền tảng chính
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"📊", part:"PHẦN 7", title:"Chỉ Báo & Hệ Thống Giao Dịch Đặc Biệt",
+    reason:"🛠️ Công cụ hỗ trợ & hệ thống chỉ báo – bổ sung sau khi có nền tảng vững chắc",
+    courses:[
+      {name:"Thanh Nin – Sóng Elliott Đếm Sóng & Dự Báo Giá",desc:"Sóng Elliott theo Thanh Nin – đếm sóng chính xác, dự báo cấu trúc giá và điểm kết thúc sóng",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"We Trade Waves – Elliott Biến Thể Hiện Đại",desc:"Elliott biến thể hiện đại – kết hợp lý thuyết sóng với hành động giá để bắt sóng linh hoạt hơn",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"VT Gann – Góc Gann & Square of Nine Thực Chiến",desc:"Huyền học Gann – ứng dụng góc Gann, square of nine xác định thời điểm và mức giá đảo chiều",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Quốc Thịnh – Ichimoku Cloud Trading System",desc:"Ichimoku thực chiến – làm chủ hệ thống mây Ichimoku để giao dịch xu hướng dài hạn bền vững",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"VWAP Mastery – Volume Weighted Average Price Pro",desc:"Làm chủ VWAP – công cụ đo giá trị thực của thị trường được các trader tổ chức sử dụng hàng ngày",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"VGT System – MACD & EMA 34-89 Trend Trading",desc:"Hệ thống VGT – kết hợp MACD và EMA 34-89 tạo tín hiệu giao dịch xu hướng có xác suất cao",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nap245 – RSI Special Zone Trading System",desc:"Hệ thống RSI Nap245 – chiến lược giao dịch độc đáo dựa trên các vùng RSI đặc biệt 2-4-5",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Momentum RSI – Divergence & Reversal System 2025-26",desc:"RSI momentum nâng cao 2025-26 – khai thác tín hiệu divergence để bắt đảo chiều sớm nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"C-Master 2025 – Hệ Thống Giao Dịch Hoàn Chỉnh Cường Nguyễn",desc:"C-Master 2025 – hệ thống giao dịch hoàn chỉnh cập nhật theo thực tế thị trường mới nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"PP 369 – Fibonacci & Chu Kỳ 369 Dự Báo Giá",desc:"Phương pháp 369 – ứng dụng số học Fibonacci & chu kỳ 369 vào dự báo giá thị trường tài chính",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"SNA Trading – Lộ Trình Từ Cơ Bản Đến Mentoring 1-1",desc:"Chuỗi khóa SNA toàn diện – từ nhập môn đến kèm 1-1, phát triển trader theo lộ trình rõ ràng",links:[["SNA","https://www.threads.com/@lebinhtrung3012"],["K1","https://www.threads.com/@lebinhtrung3012"],["K2","https://www.threads.com/@lebinhtrung3012"],["K3","https://www.threads.com/@lebinhtrung3012"],["1-1","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Indicator System – Bộ Chỉ Báo Tổng Hợp Đa Tín Hiệu",desc:"Bộ chỉ báo tổng hợp – tích hợp nhiều tín hiệu kỹ thuật thành một hệ thống giao dịch mạch lạc",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Blockchain Dream 2021 – Custom Indicator Trading System",desc:"Hệ thống chỉ báo tùy chỉnh 2021 – tín hiệu mua bán tối ưu cho thị trường crypto & forex",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Blockchain Dream 2019 – Crypto Cycle Analysis Foundation",desc:"Phiên bản 2019 – nền tảng phân tích kỹ thuật crypto theo chu kỳ thị trường kinh điển",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Alden Nguyen – Phân Tích Kỹ Thuật Lộ Trình 3 Cấp",desc:"Lộ trình Alden Nguyen – phân tích kỹ thuật bài bản từ cơ bản đến chiến lược nâng cao",links:[["21","https://www.threads.com/@lebinhtrung3012"],["K1","https://www.threads.com/@lebinhtrung3012"],["K2","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Lão Hạc – Hệ Thống Chỉ Báo Kinh Nghiệm Thực Chiến",desc:"Hệ thống chỉ báo kinh nghiệm – phương pháp giao dịch được kiểm chứng qua nhiều năm thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Sư Huynh – Phân Tích Kỹ Thuật Đa Trường Phái",desc:"Góc nhìn người thầy – hệ thống PTKT toàn diện kết hợp nhiều trường phái kinh điển",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Thái Tống Trường – Chỉ Báo & Chiến Lược Thị Trường VN",desc:"Chỉ báo & chiến lược thực chiến Thái Tống Trường – tối ưu cho thực tế thị trường Việt Nam",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Hoàng Linh – Moving Average & Momentum System",desc:"Hệ thống Hoàng Linh – kết hợp đường trung bình động và momentum để lọc xu hướng hiệu quả",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Hân FX – Mr Trade Phân Tích Kỹ Thuật Thực Chiến",desc:"Mr Trade thực chiến – PTKT dễ áp dụng cho cả forex lẫn chứng khoán mỗi ngày",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"JX Scalping – Momentum Indicator Fast Trading",desc:"Kỹ thuật scalping JX – giao dịch nhanh theo chỉ báo momentum, ăn điểm từng phút thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Hòa Thân – Multi-Indicator Kết Hợp Tối Ưu Entry",desc:"Chiến lược Hòa Thân – đọc thị trường theo nhiều chỉ báo kết hợp để tối ưu thời điểm vào lệnh",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"PTC Foundation – Phân Tích Kỹ Thuật Cổ Điển Cơ Bản",desc:"Phân tích kỹ thuật cổ điển – nền tảng đọc chart, mô hình giá và chỉ báo cho người mới bắt đầu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Ala Trading – Consecutive Candle Trend System",desc:"Chiến lược nến đồng màu – nhận diện xu hướng mạnh qua mô hình nến liên tiếp cùng chiều",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Văn Thanh – Bob Volman Volume Trading Thực Chiến",desc:"Bobvolman thực chiến – phân tích khối lượng giao dịch theo trường phái Bob Volman kinh điển",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 8 – TÂM LÝ, CHIẾN THUẬT & QUẢN LÝ VỐN
+  // Lý do: Kỹ năng mềm – không phụ thuộc phương pháp, ai cũng cần nhưng học sau khi có hệ thống
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"💡", part:"PHẦN 8", title:"Tâm Lý Giao Dịch, Chiến Thuật & Quản Lý Vốn",
+    reason:"🧘 Kỹ năng mềm quyết định thành bại – học sau khi đã có phương pháp cụ thể",
+    courses:[
+      {name:"Magic Box – Scalping & M5 Swing Trade Tự Do",desc:"Magic Box – phương pháp scalping đột phá kết hợp M5 swing trade linh hoạt theo phong cách tự do",links:[["Magic Box","https://www.threads.com/@lebinhtrung3012"],["M5 Swing","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trading For Living – Sống Bằng Nghề Trading Bền Vững",desc:"Sống bằng nghề trading – lộ trình xây dựng thu nhập bền vững từ thị trường tài chính thực tế",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kolia Phan – Tâm Lý Giao Dịch Vàng XAU/USD",desc:"Làm chủ tâm lý khi trade vàng – vượt qua FOMO, greed và fear để giao dịch XAU/USD bền vững",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kolia Phan – Đầu Tư Vàng Thực Chiến Chu Kỳ Vĩ Mô",desc:"Chiến lược vàng thực chiến Kolia – phân tích XAU/USD theo chu kỳ vĩ mô và kỹ thuật kết hợp",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nhà Du Hành – SDZ Linh Hoạt Đa Khung Thời Gian",desc:"Du hành qua các vùng cung cầu – hệ thống SDZ linh hoạt phù hợp nhiều khung thời gian",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"KPT Matrix – Supply Demand & Market Timing System",desc:"KPT nâng cấp Matrix – SDZ kết hợp timing thị trường theo chu kỳ giá phức hợp chuyên sâu",links:[["KPT","https://www.threads.com/@lebinhtrung3012"],["Matrix","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Tony M – SDZ Tinh Giản High-Quality Zone Trading",desc:"SDZ theo Tony M – tối giản vùng cung cầu, chỉ entry vùng chất lượng cao, RR tốt nhất thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"LCCM – Liquidity Cycle & Cung Cầu Vòng Lặp",desc:"Mô hình LCCM – phân tích cấu trúc thị trường theo vòng lặp thanh khoản cung cầu chuyên sâu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"TLP – Thanh Khoản & Áp Lực Dòng Lệnh System",desc:"Hệ thống TLP – chiến lược giao dịch theo thanh khoản và áp lực mua bán thực tế thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"OTL – Over The Level Breakout Trading Strategy",desc:"Over The Level – chiến lược breakout vùng OTL để bắt sóng bứt phá mạnh nhất thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Habitrade – Kỷ Luật & Thói Quen Trader Chuyên Nghiệp",desc:"Xây dựng thói quen giao dịch tốt – kỷ luật, quy trình và mindset của trader chuyên nghiệp",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Keyvolume – Key Volume Zone Entry Timing",desc:"Keyvolume Long Ka Cơ – xác định vùng volume quan trọng để định thời điểm vào lệnh tối ưu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trader Tiểu Học – Hệ Thống Giao Dịch Đơn Giản Hiệu Quả",desc:"Quay về cơ bản – hệ thống giao dịch đơn giản nhưng hiệu quả đáng kinh ngạc",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Phan Đức Thảo – Pure Price Action Tư Duy Thị Trường",desc:"Chiến lược Phan Đức Thảo – tư duy phân tích thị trường theo hành động giá thuần túy thực chiến",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Mentoring 1-1 – Kèm Cặp Cá Nhân Hóa Thực Chiến",desc:"Kèm 1-1 thực chiến – mentoring cá nhân hóa, giải quyết điểm yếu riêng của từng trader",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Minvest – Quản Lý Vốn Tối Thiểu Hiệu Quả Tối Đa",desc:"Minvest – chiến lược đầu tư và quản lý vốn tối thiểu nhưng tối đa hóa hiệu quả sinh lời",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Zet Under – Risk Management Dưới Ngưỡng Biến Động",desc:"Giao dịch dưới ngưỡng – chiến lược quản lý rủi ro theo phương pháp Zet Under độc đáo",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nhật Ký Thị Trường – Chart Analysis & Macro News",desc:"Nhật ký thị trường thực tế – theo dõi chart & tin tức quan trọng ảnh hưởng đến giá từng ngày",links:[["Chart","https://www.threads.com/@lebinhtrung3012"],["Tin Đỏ","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Entry Tips – Kỹ Thuật Vào Lệnh Tối Ưu Đa Phương Pháp",desc:"Bí quyết entry chuẩn – tổng hợp kỹ thuật vào lệnh tối ưu từ nhiều phương pháp khác nhau",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Tiểu Long FX – Phong Cách Giao Dịch Nhanh Nhẹn",desc:"Chiến lược Tiểu Long – phong cách giao dịch nhanh nhẹn kết hợp nhiều phương pháp phân tích",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 9 – CHỨNG KHOÁN VIỆT NAM
+  // Lý do cuối: Thị trường cụ thể, chuyên biệt
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🏦", part:"PHẦN 9", title:"Chứng Khoán Việt Nam, Phân Tích Doanh Nghiệp & BCTC",
+    reason:"🇻🇳 Thị trường chuyên biệt – áp dụng các nền tảng trên vào TTCK Việt Nam",
+    courses:[
+      {name:"Hùng – CANSLIM Method Cổ Phiếu Tăng Trưởng",desc:"CANSLIM huyền thoại – chọn cổ phiếu tăng trưởng mạnh theo tiêu chí William O'Neil kinh điển",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"AFA – Phân Tích Báo Cáo Tài Chính Doanh Nghiệp",desc:"Đọc báo cáo tài chính chuẩn AFA – phân tích sức khỏe doanh nghiệp trước khi đầu tư",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trần Ngọc Báu – Kinh Tế Vĩ Mô & Chu Kỳ Dòng Tiền",desc:"Kinh tế vĩ mô & dòng tiền – đầu tư theo chu kỳ kinh tế và dòng tiền lớn thị trường VN",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vietstock – Phân Tích Kỹ Thuật Nâng Cao Chuẩn",desc:"PTKT nâng cao chuẩn Vietstock – chiến lược phân tích chuyên sâu cho TTCK Việt Nam",links:[["Nâng Cao","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vietstock – Đọc Hiểu Báo Cáo Tài Chính Doanh Nghiệp",desc:"Đọc BCTC theo Vietstock – phân tích báo cáo tài chính doanh nghiệp theo chuẩn chuyên nghiệp VN",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vietstock – Định Giá Cổ Phiếu DCF & P/E P/B",desc:"Định giá cổ phiếu chuẩn xác – DCF, P/E, P/B và so sánh ngành theo chuẩn Vietstock",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vietstock – Phân Tích Ngành & Sector Rotation",desc:"Theo dõi dòng tiền ngành – xác định sector dẫn dắt thị trường để đón đầu cơ hội",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vietstock – Ứng Dụng PTKT Vào Chứng Khoán VN",desc:"Ứng dụng PTKT thực chiến – kết hợp phân tích kỹ thuật và cơ bản vào giao dịch CK VN",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Davinci – Hợp Đồng Tương Lai VN30 Cơ Bản",desc:"Nhập môn phái sinh Davinci – hiểu cơ chế hợp đồng tương lai VN30 và cách giao dịch hiệu quả",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Davinci – Phái Sinh VN30 Nâng Cao & Hedging",desc:"Làm chủ phái sinh VN30 – chiến lược đòn bẩy nâng cao, hedge rủi ro và tối đa hóa lợi nhuận",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Davinci – Lướt Sóng Cổ Phiếu Ngắn & Trung Hạn",desc:"Lướt sóng cổ phiếu Davinci – bắt sóng ngắn & trung hạn theo PTKT linh hoạt",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Davinci – Trending Investment LV2 Dài Hạn",desc:"Trending nâng cao Davinci – giữ lệnh theo xu hướng dài hạn, tối đa lợi nhuận cổ phiếu tốt",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Davinci – Đầu Tư Theo Chu Kỳ Kinh Tế Vĩ Mô",desc:"Đầu tư đúng chu kỳ kinh tế – phân bổ tài sản theo từng giai đoạn vĩ mô để tối ưu danh mục",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nguyễn Toại – Chứng Khoán Cơ Bản & Kỹ Thuật Kết Hợp",desc:"Chứng khoán VN theo Nguyễn Toại – phân tích cơ bản & kỹ thuật kết hợp cho TTCK Việt Nam",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kakata – Dòng Tiền & Vùng Tích Lũy Cổ Phiếu",desc:"Chiến lược Kakata – phân tích dòng tiền và vùng tích lũy để đón sóng cổ phiếu hiệu quả",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"QMV – Phân Tích Định Lượng & Volume Cổ Phiếu",desc:"Phương pháp QMV – kết hợp phân tích định lượng và volume để lọc cổ phiếu tiềm năng nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Quang Dũng – Đầu Tư Chứng Khoán Góc Nhìn Insider",desc:"Chiến lược Quang Dũng – góc nhìn đầu tư CK từ insider thị trường công nghệ Việt Nam",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nguyễn Đạt – PTKT Cổ Phiếu Theo Sóng & Cấu Trúc",desc:"PTKT chứng khoán Nguyễn Đạt – tìm điểm mua bán cổ phiếu theo sóng giá và cấu trúc thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Doãn Đức – VSA Dòng Tiền Tổ Chức Chứng Khoán VN",desc:"VSA chứng khoán VN – đọc khối lượng & nến để phát hiện dòng tiền lớn vào/ra cổ phiếu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trương Bình – PTKT Chứng Khoán Cơ Bản & Nâng Cao",desc:"Hệ thống Trương Bình – PTKT chứng khoán từ cơ bản đến nâng cao chuyên sâu theo thực tế VN",links:[["Cơ Bản","https://www.threads.com/@lebinhtrung3012"],["Nâng Cao","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Stock Farmer – Đầu Tư Giá Trị Bền Vững Dài Hạn",desc:"Trồng cổ phiếu như nông dân – đầu tư giá trị bền vững, kiên nhẫn chờ thu hoạch lợi nhuận lớn",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Nguyễn Phước Hải – Vĩ Mô & Kỹ Thuật Chứng Khoán",desc:"Đầu tư Nguyễn Phước Hải – kết hợp phân tích vĩ mô & kỹ thuật để chọn thời điểm đầu tư tối ưu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kolia Phan – Giao Dịch Chứng Khoán & Tâm Lý Vững",desc:"Chiến lược Kolia Phan – giao dịch với tâm lý vững vàng theo dòng xu hướng lớn thị trường",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Toàn Vlog – VSA Dòng Tiền Chứng Khoán Hàng Ngày",desc:"VSA thực chiến Toàn Vlog – phân tích volume hàng ngày, theo sát dòng tiền tổ chức thị trường VN",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Hiếu TV – Phân Tích Thị Trường Chứng Khoán Thực Tế",desc:"Đầu tư cùng Hiếu TV – phân tích thực tế thị trường hàng ngày theo phong cách dễ hiểu",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Công Tuyền – Darvas Box Breakout Cổ Phiếu",desc:"Hộp Darvas kinh điển – tìm cổ phiếu bứt phá từ vùng tích lũy theo hệ thống rõ ràng",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Tony Chứng Khoán – Chiến Lược Đầu Tư K43 2025-26",desc:"Khóa K43 của Tony – chiến lược đầu tư chứng khoán cập nhật mới nhất theo thực tế 2025-2026",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 10 – CRYPTO, DEFI & LẬP TRÌNH
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🪙", part:"PHẦN 10", title:"Tiền Điện Tử (Crypto), DeFi & Lập Trình Algo",
+    reason:"⛓️ Thị trường chuyên biệt Crypto – kết hợp phân tích kỹ thuật & on-chain data",
+    courses:[
+      {name:"Coin98 – Blockchain, DeFi & Altcoin Investment Guide",desc:"Nền tảng crypto Coin98 – hiểu blockchain, DeFi và chiến lược đầu tư altcoin từ gốc đến ngọn",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"DeFi 101 – Decentralized Finance Nhập Môn Toàn Diện",desc:"Nhập môn DeFi – cách dùng DEX, yield farming, liquidity pool để tối ưu lợi nhuận crypto",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Simon Cường – On-Chain Analysis & Altcoin Trading",desc:"Crypto theo Simon Cường – phân tích on-chain kết hợp kỹ thuật để bắt sóng altcoin tốt nhất",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"RKT – Crypto Cycle Investment System",desc:"Hệ thống RKT – chiến lược đầu tư crypto theo chu kỳ thị trường, tối ưu tỷ lệ mua/bán theo trend",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"8x Magic Box Crypto – Phương Pháp 8x Thị Trường Số",desc:"Magic Box phiên bản crypto – áp dụng phương pháp 8x vào thị trường tiền kỹ thuật số biến động cao",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Pro Signal – Tín Hiệu Crypto Phân Tích PA & SMC",desc:"Call kèo chuyên nghiệp – tín hiệu giao dịch crypto được phân tích bài bản theo PA & SMC",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Kiemcoin – Chiến Lược Đầu Tư Crypto Đa Dạng",desc:"Kiếm coin có hệ thống – từ cơ bản đến mở rộng chiến lược đầu tư crypto đa dạng và hiệu quả",links:[["Kiemcoin","https://www.threads.com/@lebinhtrung3012"],["Mở Rộng","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Crypto Invest 4.0 – Web3 & AI Crypto Strategy 2025-26",desc:"Đầu tư coin 4.0 – chiến lược crypto cập nhật theo xu hướng Web3 và AI trong thị trường 2025-26",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Bùi Minh Đức – Crypto Quantitative & On-Chain Model",desc:"Crypto định lượng – phân tích on-chain data & quant model chuyên nghiệp cho thị trường crypto",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Professional Research – Quy Trình Phân Tích Như Analyst",desc:"Kỹ năng nghiên cứu thị trường – xây dựng quy trình phân tích chuyên nghiệp như analyst thực thụ",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"MQL4 Fast Track – Lập Trình EA & Indicator MT4",desc:"Tự động hóa giao dịch với MQL4 – viết EA và indicator cá nhân hóa cho MetaTrader 4",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN 11 – TÀI LIỆU NƯỚC NGOÀI
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🌍", part:"PHẦN 11", title:"Tài Liệu Nước Ngoài & Hệ Thống Toàn Diện",
+    reason:"🎓 Khóa học quốc tế – mở rộng tư duy, học từ những trader hàng đầu thế giới",
+    courses:[
+      {name:"Leo1988 – Kho Khóa Học Quốc Tế Chọn Lọc",desc:"Kho khóa học Leo1988 – tập hợp nhiều chương trình quốc tế chất lượng cao được tuyển chọn kỹ",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"International Courses – Tổng Hợp Trading Quốc Tế",desc:"Kho tài liệu quốc tế – tổng hợp những chương trình đào tạo trading tốt nhất từ khắp thế giới",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Master Trader – Lộ Trình Trader Bậc Thầy Quốc Tế",desc:"Master Trader – lộ trình trở thành trader bậc thầy theo chuẩn quốc tế từng bước có hệ thống",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Trading Blueprint 2.0 – Khung Chiến Lược Toàn Diện",desc:"Bản thiết kế giao dịch 2.0 – khung chiến lược toàn diện cho trader muốn xây dựng hệ thống riêng",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"School of Entry 2.0 – Kỹ Năng Vào Lệnh Chuẩn Quốc Tế",desc:"Trường học entry chuẩn – kỹ năng vào lệnh chính xác theo từng loại setup thị trường quốc tế",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Brian Trading – PA & Market Psychology International",desc:"Hệ thống Brian – phương pháp giao dịch quốc tế kết hợp PA và tâm lý thị trường thuần thục",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"DodgyDD – Thực Chiến Quốc Tế Không Lý Thuyết Suông",desc:"DodgyDD – phong cách thực chiến quốc tế, không lý thuyết suông, toàn bộ là kinh nghiệm thực",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Bernd Skorupinski – Hybrid AI & Supply Demand System",desc:"Hệ thống lai AI & SDZ của Bernd – kết hợp trí tuệ nhân tạo với phân tích cung cầu hiện đại",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+      {name:"Vũ Nam SDZ – Supply Demand Chuẩn Quốc Tế K1 & K2",desc:"Khóa học SDZ Nam Nguyễn – 2 cấp độ từ setup cơ bản đến chiến lược giao dịch nâng cao",links:[["K1","https://www.threads.com/@lebinhtrung3012"],["K2","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════
+  // PHẦN BỔ TRỢ – PHÁT TRIỂN BẢN THÂN
+  // ═══════════════════════════════════════════════════════
+  {
+    icon:"🌱", part:"BỔ TRỢ", title:"Phát Triển Bản Thân & Kinh Doanh",
+    reason:"✨ Nền tảng con người – tư duy, kỷ luật và định hướng sự nghiệp bền vững",
+    courses:[
+      {name:"Phạm Thành Long – Phát Triển Bản Thân & Tư Duy Kinh Doanh",desc:"Hệ thống phát triển toàn diện – từ tư duy đến hành động, xây dựng nền tảng thành công bền vững",links:[["Xem","https://www.threads.com/@lebinhtrung3012"]]},
+    ]
+  },
+];
+
+function render() {
+  const container = document.getElementById('list');
+  data.forEach((section, si) => {
+    const isBonus = section.part === 'BỔ TRỢ';
+    const sec = document.createElement('div');
+    sec.className = `section ${isBonus ? 'sec-11' : 'sec-' + si}`;
+
+    const titleEl = document.createElement('div');
+    titleEl.className = 'section-title';
+    titleEl.innerHTML = `
+      <div class="s-left">
+        <span class="section-icon">${section.icon}</span>
+        <span class="part-badge">${section.part}</span>
+        <span class="s-name">${section.title}</span>
+      </div>
+      <div class="s-right">
+        <span class="s-count">${section.courses.length} khóa</span>
+        <span class="chevron">▼</span>
+      </div>`;
+
+    const body = document.createElement('div');
+    body.className = 'section-body';
+
+    // Reason row
+    if (section.reason) {
+      const reasonRow = document.createElement('div');
+      reasonRow.style.cssText = 'padding:8px 16px 6px;font-size:11px;color:#6a8090;background:#080f18;border-top:1px solid #111a25;font-style:italic';
+      reasonRow.textContent = section.reason;
+      body.appendChild(reasonRow);
+    }
+
+    titleEl.onclick = () => { body.classList.toggle('open'); titleEl.classList.toggle('title-open'); };
+
+    const lkClasses = ['lk-blue','lk-green','lk-purple','lk-orange'];
+    section.courses.forEach((c, idx) => {
+      const row = document.createElement('div');
+      row.className = 'course-item';
+      row.dataset.name = c.name.toLowerCase() + ' ' + c.desc.toLowerCase();
+
+      const linksWrap = document.createElement('div');
+      linksWrap.className = 'c-links';
+      c.links.forEach(([label, url], li) => {
+        const btn = document.createElement('a');
+        btn.className = `link-btn ${lkClasses[li % lkClasses.length]}`;
+        btn.textContent = label;
+        btn.href = url;
+        btn.target = '_blank';
+        btn.rel = 'noopener noreferrer';
+        linksWrap.appendChild(btn);
+      });
+
+      row.innerHTML = `<span class="c-num">${idx+1}</span><div class="c-info"><div class="c-name">${c.name}</div><div class="c-desc">${c.desc}</div></div>`;
+      row.appendChild(linksWrap);
+      body.appendChild(row);
+    });
+
+    sec.appendChild(titleEl);
+    sec.appendChild(body);
+    container.appendChild(sec);
+  });
+}
+
+function filterCourses() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('.section').forEach(sec => {
+    const items = sec.querySelectorAll('.course-item');
+    let visible = 0;
+    items.forEach(item => {
+      const match = !q || item.dataset.name.includes(q);
+      item.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    sec.classList.toggle('hidden', visible === 0);
+    const body = sec.querySelector('.section-body');
+    if (q && visible > 0) body.classList.add('open');
+    else if (!q) body.classList.remove('open');
+  });
+}
+
+render();
+</script>
+</body>
+</html>
